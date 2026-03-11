@@ -1,0 +1,1 @@
+enum VerificationTypeEnums { email, phoneNumber }
