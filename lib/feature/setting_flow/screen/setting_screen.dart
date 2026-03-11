@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/global_widget/custom_appbar.dart';
 import '../controller/setting_screen.dart';
+
+
+import 'package:najwa_brighach/core/global_widget/custom_text.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -8,30 +13,48 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SettingsController());
+    final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-        centerTitle: true,
-      ),
+      backgroundColor: theme.scaffoldBackgroundColor,
+      // Using your CustomAppBar for consistent theme switching
+      appBar: const CustomAppBar(title: "Settings"),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            const ListTile(
-              leading: CircleAvatar(child: Icon(Icons.person)),
-              title: Text("Md Arif Bhuiyan"),
-              subtitle: Text("Flutter Developer"),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundColor: theme.primaryColor,
+                child: const Icon(Icons.person, color: Colors.white),
+              ),
+              title: CustomText(
+                text: "Md Arif Bhuiyan",
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: theme.textTheme.titleLarge?.color,
+              ),
+              subtitle: CustomText(
+                text: "Flutter Developer",
+                fontSize: 14,
+                color: theme.hintColor,
+              ),
             ),
-            const Divider(),
+            Divider(color: theme.dividerColor),
 
             ListTile(
-              onTap: () {
-             _showLogoutDialog(context, controller);
-              },
-              leading: const Icon(Icons.logout, color: Colors.red),
-              title: const Text("Logout", style: TextStyle(color: Colors.red)),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.red),
+              onTap: () => _showLogoutDialog(context, controller),
+              leading: const Icon(Icons.logout, color: Colors.redAccent),
+              title: const CustomText(
+                text: "Logout",
+                color: Colors.redAccent,
+                fontWeight: FontWeight.w600,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Colors.redAccent,
+              ),
             ),
           ],
         ),
@@ -40,20 +63,44 @@ class SettingsScreen extends StatelessWidget {
   }
 
   void _showLogoutDialog(BuildContext context, SettingsController controller) {
+    final theme = Theme.of(context);
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Logout"),
-        content: const Text("Are you sure you want to logout?"),
+        backgroundColor: theme.cardColor,
+        title: CustomText(
+          text: "Logout",
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          color: theme.textTheme.titleLarge?.color,
+        ),
+        content: CustomText(
+          text: "Are you sure you want to logout?",
+          fontSize: 14,
+          color: theme.textTheme.bodyMedium?.color,
+        ),
         actions: [
           TextButton(
-              onPressed: () => Get.back(),
-              child: const Text("Cancel")
+            onPressed: () => Get.back(),
+            child: CustomText(
+              text: "Cancel",
+              color: theme.hintColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           ElevatedButton(
             onPressed: () => controller.logout(),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text("Logout", style: TextStyle(color: Colors.white)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+              elevation: 0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: const CustomText(
+              text: "Logout",
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

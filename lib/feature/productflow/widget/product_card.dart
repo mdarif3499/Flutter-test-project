@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:najwa_brighach/core/global_widget/custom_text.dart';
 
+
+
 class ProductCard extends StatelessWidget {
   final dynamic product;
   final VoidCallback? onTap;
@@ -13,11 +15,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.cardColor,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -49,22 +53,19 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                  text:   product['title'] ?? "No Title",
+                    text: product['title'] ?? "No Title",
                     maxLines: 1,
                     textOverflow: TextOverflow.ellipsis,
-
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: theme.textTheme.bodyLarge?.color,
                   ),
                   const SizedBox(height: 4),
                   CustomText(
-                   text:  "\$${product['price']}",
-
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-
+                    text: "\$${product['price']}",
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                   const SizedBox(height: 4),
                   Row(
@@ -72,9 +73,9 @@ class ProductCard extends StatelessWidget {
                       const Icon(Icons.star, color: Colors.orange, size: 14),
                       Text(
                         " ${product['rating']}",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
-                          color: Colors.grey,
+                          color: theme.hintColor,
                         ),
                       ),
                     ],

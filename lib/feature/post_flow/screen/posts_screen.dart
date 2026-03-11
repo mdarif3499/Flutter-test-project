@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/global_widget/custom_appbar.dart';
 import '../controller/posts_controller.dart';
 import '../widget/post_card.dart';
 
@@ -9,10 +10,11 @@ class PostsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(PostController());
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(title: const Text("Recent Posts"), centerTitle: true),
+      backgroundColor: theme.scaffoldBackgroundColor,
+      appBar: const CustomAppBar(title: "Recent Posts"),
       body: Obx(() {
         if (controller.isLoading.value && controller.postList.isEmpty) {
           return const Center(child: CircularProgressIndicator());
@@ -25,7 +27,10 @@ class PostsScreen extends StatelessWidget {
             if (index < controller.postList.length) {
               return PostCard(post: controller.postList[index]);
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+              );
             }
           },
         );

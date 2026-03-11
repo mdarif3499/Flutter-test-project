@@ -16,10 +16,10 @@ class AppValidator {
 
     if (value == null || value.isEmpty) {
       EasyLoading.showError(
-        'Email is required',
+        'Enter user@example.com as email for testing',
         duration: const Duration(seconds: 2),
       );
-      return 'Email is required';
+      return 'Enter user@example.com as email for testing';
     }
 
     // Regular expression for email validation
@@ -39,10 +39,10 @@ class AppValidator {
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       EasyLoading.showError(
-        'Password is required',
+        'Enter  123456 as password for testing',
         duration: const Duration(seconds: 2),
       );
-      return 'Password is required';
+      return 'Enter  123456 as password for testing';
     }
 
     if (value.length < 6) {
@@ -78,10 +78,10 @@ class AppValidator {
         ..fontSize = 16;
 
       EasyLoading.showError(
-        'Password is required',
+        'Enter  123456 as password for testing',
         duration: const Duration(seconds: 2),
       );
-      return 'Password is required';
+      return 'Enter  123456 as password for testingd';
     }
 
     if (value.length < 6) {
