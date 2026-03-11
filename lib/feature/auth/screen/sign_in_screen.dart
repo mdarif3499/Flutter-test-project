@@ -71,7 +71,7 @@ class SignInScreen extends StatelessWidget {
                   // Email Field
                   CustomTextfield(
                     controller: controller.emailController,
-                    hintext: "Enter your email",
+                    hintext: "Enter any valid email address",
                     title: "Email Address",
                     validator: (value) => AppValidator.validateEmail(value),
                   ),
@@ -81,7 +81,7 @@ class SignInScreen extends StatelessWidget {
                   // Password Field
                   Obx(() => CustomTextfield(
                     controller: controller.passController,
-                    hintext: "Enter your password",
+                    hintext: "Enter any 6-digit password",
                     title: "Password",
                     obsecureText: controller.isPasswordHidden.value,
                     validator: (value) => AppValidator.validatePasswordLogin(value),

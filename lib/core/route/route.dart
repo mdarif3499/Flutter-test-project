@@ -6,6 +6,7 @@ import 'package:najwa_brighach/feature/splash/presentations/screens/splash_scree
 
 
 import '../../feature/auth/screen/sign_in_screen.dart';
+import '../../feature/nav_bar/nav_bar_binding/nav__bar_binding.dart';
 
 
 
@@ -39,6 +40,7 @@ class AppRoutes {
       name: navBarScreen,
       page: () => NavBarScreen(),
       transition: Transition.leftToRight,
+       binding: NavBarBinding(),
     ),
 
 

@@ -47,7 +47,7 @@ class SplashScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: getHeight(100)),
                 child: Image.asset(
-                  IconsPath.logo,
+                  IconsPath.book,
                   height: getHeight(317),
                   width: getWidth(289),
                 ),
